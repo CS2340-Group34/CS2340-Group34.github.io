@@ -3,19 +3,6 @@
 
 <head>
     <style>
-        
-        div.scroll {
-            margin: 4px, 4px;
-            padding: 4px;
-            background-color: white;
-            width: 1000px;
-            height: 500px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            text-align: left;
-            font-family: Verdana, sans-serif;
-        }
-
         p {
             font-family: Verdana, sans-serif;
         }
@@ -36,7 +23,7 @@
 
 <h3>Domain Model</h3>
 
-<img src="images/domainmodel.png" alt="domain">
+<img src="images/domainmodel.png" alt="domain" style="width:600px;height:500px;">
 
 <h3>Sequence Diagram</h3>
 <p> Use Case of the SD: The user is hungry, but is unsure of what they should eat. They login, and they add a new recipe for scrambled eggs. Then they check if they can make the recipe. The User instance checks the recipe for the items necessary. For all the items in the recipe, the instance goes through the names of the ingredients in the pantries, and if the names match, checks the quantities. The user has enough ingredients in their pantry, so they are informed they can make the recipe. </p>
@@ -55,13 +42,17 @@
 
 <h3>Strategy Design Pattern</h3>
 
-<img src="images/strategy1.png" alt="strategy">
+<img src="images/strategy1.jpg" alt="strategy">
 
 <img src="images/strategy2.png" alt="strategy">
 
 <p> Our code properly utilizes the strategy design pattern by formatting the filtering behavior as an attribute within the RecipeView class. We added a RecipeFilterPattern interface that implements the filterRecipes() method. The RecipeFilterPattern interface has three implementations, NoFilter (don’t filter anything), MakeableFilter (filter for recipes can be made by the user), and NotMakeableFilter (filter for recipes that cannot be made for the user). Within the RecipeView, we added a RecipeFilterPattern attribute called filter,and a method setFilter() to change the filter attribute to any instance of NoFilter, MakeableFilter, or NotMakeableFilter as needed. Whenever the RecipeView recipe list is generated on the UI, filter.filterRecipes() is called to generate a filtered list of Recipes, based on which filter implementation has been set. Because the RecipeFilterPattern is an interface, more implementations of it can be made as needed to account for more filtering behaviors.</p>
 
 <h3>Decorator Design Pattern</h3>
+
+<button onclick="document.location='ui.html'">Next: User Interface and Functionality</button>
+<button onclick="document.location='home.html'">Home</button>
+
 
 </body>
 
