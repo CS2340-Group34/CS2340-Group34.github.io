@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
-<h1 style="font-family: Verdana, sans-serif;"> Design and Architecture </h1>
 
 <head>
     <style>
-        h1 {
-            color: blue;
-        }
- 
+        
         div.scroll {
             margin: 4px, 4px;
             padding: 4px;
-            background-color: green;
-            width: 500px;
+            background-color: white;
+            width: 1000px;
             height: 500px;
             overflow-x: hidden;
             overflow-y: auto;
-            text-align: justify;
+            text-align: right;
+            font-family: Verdana, sans-serif;
         }
     </style>
 </head>
 
 <body>
+<h1 style="font-family: Verdana, sans-serif;"> Design and Architecture </h1>
+
     <center>
-        <h1>Singleton Class</h1>
+        <h3 style="font-family: Verdana, sans-serif;>Singleton Class</h1>
         <div class="scroll"> 
 
 package com.example.cs2340ateam34;
@@ -75,7 +74,6 @@ public class User {
         if (instance == null) {
             synchronized (User.class) {
                 if (instance == null) {
-                    //add code to fetch meal list and profile from relevant user account in database
                     instance = new User();
                     instance.mealList = new ArrayList<>();
                     instance.profile = new Profile(-1, -1, "Undefined");
@@ -182,7 +180,6 @@ public class User {
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         Map data = (Map) (task.getResult().getValue());
                         Set<String> keyset = data.keySet();
-                        //Ingredient[] tempingredientlist = new Ingredient[keyset.size() - 1];
                         for (String key : keyset) {
                             if (key.equals("metadata")) {
                                 Map metaMap = (Map) (data.get(key));
@@ -201,12 +198,8 @@ public class User {
                             int index = Integer.parseInt(key.toString());
                             Ingredient ingredient = new Ingredient(
                                     name, quantity, calories, expiry, index);
-                            //tempingredientlist[Integer.parseInt(key)] = ingredient;
                             ingredientList.add(ingredient);
                         }
-                        /*for (Ingredient ingredient : tempingredientlist) {
-                            ingredientList.add(ingredient);
-                        }*/
                     }
                 });
     }
@@ -237,12 +230,8 @@ public class User {
                             int index = Integer.parseInt(key.toString());
                             Ingredient ingredient = new Ingredient(
                                     name, quantity, calories, expiry, index);
-                            //tempingredientlist[Integer.parseInt(key)] = ingredient;
                             shoppingList.add(ingredient);
                         }
-                        /*for (Ingredient ingredient : tempingredientlist) {
-                            ingredientList.add(ingredient);
-                        }*/
                     }
                 });
     }
@@ -256,23 +245,17 @@ public class User {
                         Set<String> keyset = data.keySet();
                         for (String key : keyset) {
                             if (key.equals("metadata")) {
-                                //Map metaMap = (Map) (data.get(key));
-                                //nextIngredientIndex = Integer.parseInt(
-                                // metaMap.get("nextindex").toString());
                                 continue;
                             }
                             Log.d("madsf", key);
                             String name = key.toString();
                             Map recipeMap = (Map) (data.get(key));
-//                            ArrayList<RecipeItem> recipeItems = new ArrayList<>();
                             RecipeBuilder recipe = new RecipeBuilder(name);
                             Set<String> innerKeySet = recipeMap.keySet();
                             for (String itemName : innerKeySet) {
                                 int quantity = Integer.parseInt(recipeMap.get(itemName).toString());
-//                                recipeItems.add(new RecipeItem(itemName, quantity));
                                 recipe.addComponent(itemName, quantity);
                             }
-//                            Recipe recipe = new Recipe(name, recipeItems);
                             recipeList.add(recipe);
                         }
                         /*for (Ingredient ingredient : tempingredientlist) {
@@ -354,7 +337,6 @@ public class User {
 
 
     public void addRecipe(RecipeBuilder recipe) {
-//        ArrayList<RecipeItem> recipeItems = recipe.getRecipeItems();
         ArrayList<RecipeComponent> recipeItems = recipe.recipeToArray();
         for (RecipeComponent item: recipeItems) {
             dbRef.child("recipes").child(recipe.getName()).child(item.getName()).setValue(
