@@ -15,14 +15,34 @@
             text-align: right;
             font-family: Verdana, sans-serif;
         }
+
+        p {
+            font-family: Verdana, sans-serif;
+        }
+
+        h3 {
+            font-family: Verdana, sans-serif;
+        }
+
     </style>
 </head>
 
 <body>
 <h1 style="font-family: Verdana, sans-serif;"> Design and Architecture </h1>
 
+<h3>Design Class Diagram</h3>
+
+<img src="dcd.png" alt="dcd">
+
+<h3>Domain Model</h3>
+
+<h3>Sequence Diagram</h3>
+
+<h3>System Sequence Diagram</h3>
+
+
     <center>
-        <h3 style="font-family: Verdana, sans-serif;>Singleton Class</h1>
+        <h3>Singleton Class</h3>
         <div class="scroll"> 
 
 package com.example.cs2340ateam34;
@@ -461,6 +481,9 @@ public class User {
 
 }       </div>
     </center>
+
+<p> In this prokect we implemented the Singleton design pattern for the User class. The user class is the representation of a single user, and stores the name, height, gender and weight of this user, that can be accessible any time. It has two get-instance methods, one with a parameter and one without, and the user is initialized within these methods. The class includes a few methods that initalizes the profile, meals, recipes, the shopping list, and it has add/update meals, recipes and ingredients methods and getters and setters. Whenever a User is initialized another user cannot be initialized, and will contain the exact same values as the initial one if it is created. The singleton class represents the user using the app on their phone, and since it’s only one person, and one account the User class will always be a single instance. We used the Firebase database to store this user's information from their activity on the application. </p>
+
 </body>
 
 </html>
